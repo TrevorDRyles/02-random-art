@@ -32,7 +32,17 @@ import Prelude hiding (lookup)
 -- 0
 
 assoc :: Int -> String -> [(String, Int)] -> Int
-assoc def key kvs = error "TBD:assoc"
+-- def is default return value, key is key to search for, kvs is key value pairs in array
+-- tail recursive means do processing and then return the value
+assoc def _ [] = def
+assoc def key kvs = 
+  if fst (head kvs) == key
+  then snd (head kvs)
+  else assoc def key (tail kvs)
+  -- for each key value pair
+  -- if key matches key in kv pair
+  -- return value
+  -- else return def
 
 --------------------------------------------------------------------------------
 {- | `removeDuplicates ls`
